@@ -32,9 +32,5 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-.app{
-      overflow: hidden;
-      position: fixed;
-}
 
 </style>
