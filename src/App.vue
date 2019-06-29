@@ -1,28 +1,40 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app">
+    <lottie
+      :options="defaultOptions"
+      v-on:animCreated="handleAnimation">
+    </lottie>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import { Component, Vue } from 'vue-property-decorator';
+import lottie from './lottie.vue';
+import * as animationJson from './assets/json/animation.json';
 
-export default {
-  name: 'app',
+@Component({
   components: {
-    HelloWorld,
+    lottie,
   },
-};
+})
+export default class App extends Vue {
+  defaultOptions = {
+    animationData: animationJson.default,
+  };
+
+  animationSpeed = 1;
+
+  handleAnimation(anim) {
+    this.anim = anim;
+    this.anim.play();
+  }
+}
 </script>
 
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.app{
+      overflow: hidden;
+      position: fixed;
 }
+
 </style>
